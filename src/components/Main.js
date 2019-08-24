@@ -8,10 +8,13 @@ class Main extends Component {
     url: "https://limitless-beyond-13402.herokuapp.com/products",
     items: [],
     sorts: ["Rating", "City", "Name", "Votes"],
+    numberOfPages: 5,
+    pagesArray: [],
   };
 
   componentDidMount() {
     this.fetchGet();
+    this.arrayOfPages();
   }
 
   fetchGet = async (sortBy = "", page = "") => {
@@ -31,11 +34,40 @@ class Main extends Component {
     this.fetchGet(sortBy);
   };
 
+  arrayOfPages = () => {
+    const { numberOfPages } = this.state;
+
+    const array = Array(numberOfPages);
+    const arrayOfNumbers = [...array.keys()];
+
+    arrayOfNumbers.forEach((number, index) => {
+      return (arrayOfNumbers[index] = number + 1);
+    });
+
+    this.setState({
+      pagesArray: arrayOfNumbers,
+    });
+  };
+
+  handlePage = page => {
+    this.fetchGet("", page);
+  };
+
   render() {
-    const { items, sorts } = this.state;
+    const { items, sorts, pagesArray, currentPage } = this.state;
     return (
       <section id="main">
         <h1>Main Page</h1>
+        {pagesArray.map((number, index) => (
+          <span
+            id="pages"
+            key={index}
+            onClick={() => this.handlePage(number)}
+            className={currentPage === number ? "active" : null}
+          >
+            {number}
+          </span>
+        ))}
         <Dropdown sorts={sorts} handleChange={this.handleChange} />
         <div id="cards">
           {items.map((item, index) => (
