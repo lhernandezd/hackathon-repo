@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Dropdown from "./Dropdown";
 import Card from "./Card";
+import "../css/Main.css";
 
 class Main extends Component {
   state = {
