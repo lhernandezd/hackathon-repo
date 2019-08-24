@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Card from "./Card";
 
 class Main extends Component {
   state = {
@@ -23,10 +24,15 @@ class Main extends Component {
   };
 
   render() {
-    console.log(this.state);
+    const { items } = this.state;
     return (
       <section>
         <h1>Main Page</h1>
+        <div id="cards">
+          {items.map((item, index) => (
+            <Card key={index} {...item} />
+          ))}
+        </div>
       </section>
     );
   }
