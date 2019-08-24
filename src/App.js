@@ -18,8 +18,8 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
-          <Main />
         </a>
+        <Main />
       </header>
     </div>
   );
