@@ -24,6 +24,34 @@
   font-weight: 400;
 }
 
+@font-face {
+  font-family: KkGrotesk;
+  src: url("./fonts/KkGrotesk/HKGrotesk-Bold.otf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: KkGrotesk;
+  src: url("./fonts/KkGrotesk/HKGrotesk-Light.otf");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: KkGrotesk;
+  src: url("./fonts/KkGrotesk/HKGrotesk-Medium.otf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: KkGrotesk;
+  src: url("./fonts/KkGrotesk/HKGrotesk-Regular.otf");
+  font-weight: 400;
+}
+
+:root {
+  --light-navy: #112d68;
+}
+
 body {
   font-family: Karla;
 }

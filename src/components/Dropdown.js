@@ -1,4 +1,5 @@
 import React from "react";
+import "../css/Dropdown.css";
 
 function Dropdown(props) {
   const { sorts, handleChange } = props;
