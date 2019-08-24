@@ -26,6 +26,7 @@
 .card__content__title {
   font-family: KkGrotesk;
   font-size: 20px;
+  height: 40px;
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.48px;

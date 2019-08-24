@@ -12,10 +12,28 @@ class Main extends Component {
     numberOfPages: 10,
     pagesArray: [],
     sortBy: "rating",
+    favorites: [],
   };
+
+  componentWillMount() {
+    const localItems = localStorage.getItem("favorites");
+    if (localItems) {
+      const favorites = JSON.parse(localItems);
+      this.setState({
+        favorites,
+      });
+    } else {
+      localStorage.setItem("favorites", JSON.stringify([]));
+    }
+  }
 
   componentDidMount() {
     this.fetchGet();
+  }
+
+  componentDidUpdate() {
+    const { favorites } = this.state;
+    localStorage.setItem("favorites", JSON.stringify(favorites));
   }
 
   fetchGet = async (sortBy = "", page = "") => {
@@ -57,9 +75,41 @@ class Main extends Component {
     this.fetchGet(sortBy, page);
   };
 
+  findFavorite = id => {
+    const { favorites } = this.state;
+    const favoriteFilter = favorites.filter(favorite => favorite.id === id);
+    if (favoriteFilter.length > 0) {
+      this.deleteFavorites(id);
+    } else {
+      this.addFavorites(id);
+    }
+  };
+
+  addFavorites = id => {
+    const { favorites } = this.state;
+    favorites.push({ id });
+    this.setState({
+      favorites,
+    });
+  };
+
+  deleteFavorites = id => {
+    const { favorites } = this.state;
+    const filterFavorites = favorites.filter(favorite => favorite.id !== id);
+    this.setState({
+      favorites: filterFavorites,
+    });
+  };
+
   render() {
-    const { items, sorts, pagesArray, currentPage, numberOfPages } = this.state;
-    console.log(this.state);
+    const {
+      items,
+      sorts,
+      pagesArray,
+      currentPage,
+      numberOfPages,
+      favorites,
+    } = this.state;
     return (
       <section id="main">
         <div id="query">
@@ -99,7 +149,12 @@ class Main extends Component {
         </div>
         <div className="cards" id="cards">
           {items.map((item, index) => (
-            <Card key={index} {...item} />
+            <Card
+              key={index}
+              {...item}
+              findFavorite={this.findFavorite}
+              favorites={favorites}
+            />
           ))}
         </div>
       </section>

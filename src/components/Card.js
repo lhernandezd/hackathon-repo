@@ -2,7 +2,17 @@ import React from "react";
 import "../css/Card.css";
 
 function Card(props) {
-  const { id, photo, name, city, price, rating } = props;
+  const {
+    id,
+    photo,
+    name,
+    city,
+    price,
+    rating,
+    findFavorite,
+    favorites,
+  } = props;
+  const favoriteFilter = favorites.filter(favorite => favorite.id === id);
   return (
     <div id={id} className="card">
       <img className="card__photo" src={photo} alt={name} />
@@ -15,7 +25,21 @@ function Card(props) {
             <img alt="rating" src="images/rating.svg" />
             <span className="footer__rating__span">{rating}</span>
           </div>
-          <img alt="heart" src="images/heart.svg" />
+          {favoriteFilter.length > 0 ? (
+            <img
+              id="heart"
+              alt="heart"
+              src="images/heartFull.svg"
+              onClick={() => findFavorite(id)}
+            />
+          ) : (
+            <img
+              id="heart"
+              alt="heart"
+              src="images/heart.svg"
+              onClick={() => findFavorite(id)}
+            />
+          )}
         </div>
       </div>
     </div>

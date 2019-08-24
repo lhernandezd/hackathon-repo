@@ -14,7 +14,7 @@
                         <use xlink:href="#path-1"></use>
                     </mask>
                     <use id="Shape" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
-                    <g id="COLOR-/-grey-navi" mask="url(#mask-2)" fill="#BEC6C4" fill-rule="evenodd">
+                    <g id="COLOR-/-grey-navi" mask="url(#mask-2)" fill="#ff741d" fill-rule="evenodd">
                         <rect id="Rectangle" x="0" y="0" width="13.754386" height="13.754386"></rect>
                     </g>
                 </g>
